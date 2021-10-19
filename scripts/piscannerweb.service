@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=pi
 Restart=always
-ExecStart=/home/pi/piscanner/web/piscannerweb.sh
+ExecStart=/home/pi/piscanner/scripts/piscannerweb.sh
 
 [Install]
 WantedBy=multi-user.target

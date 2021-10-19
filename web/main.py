@@ -1,5 +1,5 @@
 from RpiMotorLib import RpiMotorLib
-from flask import Flask, render_template_string, redirect, request, Response
+from flask import Flask, render_template, redirect, request, Response
 from time import sleep
 
 #Nema 17 Stepper Motor 42x23 17HS4023
@@ -15,22 +15,11 @@ m2_step = 27      # Step -> GPIO Pin
 motor2 = RpiMotorLib.A4988Nema(m2_direction, m2_step, m2_GPIO_pins, "A4988")
 
 app = Flask(__name__)
-#HTML Code 
-TPL = '''
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">                
-        <title>Stepper Motor Controller</title>
-    </head>
-    <body>
-    </body>
-</html>
-'''
+
  
 @app.route("/")
-def home():
-    return render_template_string(TPL)
+def home():      
+    return render_template('index.html')
     
 @app.route("/m1")
 def m1():
