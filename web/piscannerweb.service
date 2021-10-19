@@ -1,0 +1,12 @@
+[Unit]
+Description=PiScanner Web Service
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+Restart=always
+ExecStart=/home/pi/piscanner/web/piscannerweb.sh
+
+[Install]
+WantedBy=multi-user.target
