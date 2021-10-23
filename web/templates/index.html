@@ -2,9 +2,48 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <script src="{{ url_for('static', filename='jquery-3.6.0.min.js') }}"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <script src="{{ url_for('static', filename='javascripts/jquery-3.6.0.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='javascripts/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='javascripts/piscanner.js') }}"></script>
         <title>Stepper Motor Controller</title>
     </head>
     <body>
+        <div class="text-center">
+            <h1>PiScanner</h1>
+            <p>Photogrammetry</p> 
+        </div>
+        <form class="form-horizontal">
+          <div class="container">
+            <div class="row">              
+                <h3>Motor 1 control</h3>
+                <div class="input-group">
+                    <div class="form-check-inline">
+                        <label for="motor1">Direction</label>                    
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="optradio">Clockwise
+                        </label>                    
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="optradio">Counter Clockwise
+                        </label>                    
+                        <label for="usr">Step:</label>
+                        <input type="text" class="form-control" id="step">
+                        <button type="button" class="btn btn-primary">Send</button>
+                    </div>
+                </div>              
+            </div>
+            <div class="row">              
+                <h3>Camera control</h3>
+                <div class="input-group">
+                    <div class="form-check-inline">
+                        <button type="button" class="btn btn-primary" onclick="takephoto()">Capture</button>
+                    </div>
+                    <div id="photo-container">
+                    </div>
+                </div>              
+            </div>
+
+          </div>
+        </form>
     </body>
 </html>

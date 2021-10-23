@@ -1,0 +1,2 @@
+  ##New USB device found, idVendor=04a9, idProduct=319a, bcdDevice= 0.02
+  SUBSYSTEM=="usb", ATTRS{idVendor}=="04a9", ATTRS{idProduct}=="319a", OWNER="pi"

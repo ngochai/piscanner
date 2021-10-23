@@ -1,2 +1,2 @@
 #!/bin/bash
-python /home/pi/piscanner/web/main.py
+python3 /home/pi/piscanner/web/main.py
