@@ -57,8 +57,8 @@ def takephoto():
     camera.init()
     app.logger.debug('Capturing image')
     file_path = camera.capture(gp.GP_CAPTURE_IMAGE)
-    target_dir = os.path.join(path, 'web', 'static', 'images', ' cam')
-    os.mkdir(target_dir)
+    target_dir = os.path.join(path, 'static', 'images', 'cam')
+    os.makedirs(target_dir)
     target_file = os.path.join(target_dir, 'output.jpg')
     app.logger.debug('Copying image to', target_file)
     camera_file = camera.file_get(
