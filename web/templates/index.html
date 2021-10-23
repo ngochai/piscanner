@@ -15,32 +15,78 @@
         </div>
         <form class="form-horizontal">
           <div class="container">
-            <div class="row">              
-                <h3>Motor 1 control</h3>
-                <div class="input-group">
-                    <div class="form-check-inline">
-                        <label for="motor1">Direction</label>                    
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optradio">Clockwise
-                        </label>                    
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optradio">Counter Clockwise
-                        </label>                    
-                        <label for="usr">Step:</label>
-                        <input type="text" class="form-control" id="step">
-                        <button type="button" class="btn btn-primary">Send</button>
-                    </div>
-                </div>              
+
+            <div class="row">
+                <h3>Motor 1 (model) control</h3>
             </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <label for="motor1">Direction</label>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="motor1dir" value="cw">Clockwise
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="motor1dir" value="ccw">Counter Clockwise
+                    </label>
+                </div>
+                <div class="col-md2">
+                    <label for="usr">Step:</label>
+                </div>
+                <div class="col-md2">
+                    <input type="text" class="form-control" id="motor1step">
+                </div>
+                <div class="col-md2">
+                    <button type="button" class="btn btn-primary" onclick="motor(1)">Send</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <h3>Motor 2 (long arm) control</h3>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <label for="motor1">Direction</label>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="motor2dir" value="cw">Clockwise
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="motor2dir" value="ccw">Counter Clockwise
+                    </label>
+                </div>
+                <div class="col-md2">
+                    <label for="usr">Step:</label>
+                </div>
+                <div class="col-md2">
+                    <input type="text" class="form-control" id="motor2step">
+                </div>
+                <div class="col-md2">
+                    <button type="button" class="btn btn-primary" onclick="motor(2)">Send</button>
+                </div>
+            </div>
+
             <div class="row">              
                 <h3>Camera control</h3>
+            </div>
+
+            <div class="row">
                 <div class="input-group">
                     <div class="form-check-inline">
                         <button type="button" class="btn btn-primary" onclick="takephoto()">Capture</button>
                     </div>
                     <div id="photo-container">
+                        <img src="static/images/cam/output.jpg" class="img-fluid">
                     </div>
-                </div>              
+                </div>       
             </div>
 
           </div>

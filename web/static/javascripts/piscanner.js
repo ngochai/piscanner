@@ -76,5 +76,16 @@ function takephoto() {
         imgsrc='<img src="static/images/cam/' + jpgname + '" class="img-fluid">';
         $("#photo-container").append(imgsrc);
     });
+}
 
+function motor(motor) {
+  url = motor == 1 ? "/m1" : "/m2";
+  mname = motor == 1 ? "motor1" : "motor2";
+  cw = $('input[name="'+mname+'dir"]:checked').val() == 'cw' ? 1 : 0;
+  step = $('#'+mname+'step').val();
+  $.ajax({
+    url: url,
+    data: { cw: cw, step: step }
+  }).done(function() {
+  });
 }

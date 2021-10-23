@@ -9,7 +9,7 @@ import subprocess
 import gphoto2 as gp
 
 path = os.path.dirname(os.path.realpath(__file__))
-logging.basicConfig(filename=path + '/piscanner.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+logging.basicConfig(filename='/var/log/piscannerweb.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 #Nema 17 Stepper Motor 42x23 17HS4023
 m1_GPIO_pins = (14, 15, 18) # Microstep Resolution MS1-MS3 -> GPIO Pinm1_
@@ -22,10 +22,6 @@ m2_direction= 17       # Direction -> GPIO Pin
 m2_step = 27      # Step -> GPIO Pin
 motor2 = RpiMotorLib.A4988Nema(m2_direction, m2_step, m2_GPIO_pins, "A4988")
 
-
-#callback_obj = gp.check_result(gp.use_python_logging())
-camera = gp.Camera()
-camera.init()
 
 app = Flask(__name__)
 
@@ -56,26 +52,19 @@ def m2():
     return Response(status = 200)
  
 @app.route("/takephoto")
-def takephoto():
-    #filename = path + "/static/images/cam/" + request.args.get("filename")
-    #app.logger.debug("Filename is " + filename)
-    #result = runcommand(['gphoto2', '--auto-detect'])
-    #app.logger.debug(result)
-    #result = runcommand(['gphoto2', '--set-config','capturetarget=1'])
-    #app.logger.debug(result)
-    #result = runcommand(['gphoto2', '--filename', ' /home/pi/piscanner/web/static/images/cam/output.jpg', '--capture-image-and-download'])
-    #result = runcommand(['gphoto2', 'list-files', '--debug'])
-    #app.logger.debug(result)
-
+def takephoto():    
+    camera = gp.Camera()
+    camera.init()
     app.logger.debug('Capturing image')
     file_path = camera.capture(gp.GP_CAPTURE_IMAGE)
-    app.logger.debug('Camera file path: {0}/{1}'.format(file_path.folder, file_path.name))
-    target = '/home/pi/piscanner/web/static/images/cam/output.jpg'
-    app.logger.debug('Copying image to', target)
+    target_dir = os.path.join(path, 'web', 'static', 'images', ' cam')
+    os.mkdir(target_dir)
+    target_file = os.path.join(target_dir, 'output.jpg')
+    app.logger.debug('Copying image to', target_file)
     camera_file = camera.file_get(
         file_path.folder, file_path.name, gp.GP_FILE_TYPE_NORMAL)
-    camera_file.save(target)
-
+    camera_file.save(target_file)
+    camera.exit()
     return Response(status = 200)
 
 
